@@ -18,12 +18,14 @@ class HttpImage extends Component {
 
     layout = ({ nativeEvent }) => {
         const { layout } = nativeEvent;
-        const { uri } = this.props;
+        const { uri, onReady } = this.props;
         if (uri) {
             Image.getSize(uri, (width, height) => {
                 this.setImageSize(layout, width, height)
             })
         }
+        // 返回图片的宽高
+        onReady && onReady(layout);
     }
 
     setImageSize = (layout, width, height) => {
