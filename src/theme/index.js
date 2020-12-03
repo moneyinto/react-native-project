@@ -6,5 +6,5 @@ export default {
     bottomNavColor: '#909090',
     tintColor: '#000',
     backgroundColor: '#f4f4f4',
-    tabTintColor: '#ffb300'
+    tabTintColor: '#ff0064'
 };

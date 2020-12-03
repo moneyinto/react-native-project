@@ -40,7 +40,7 @@ export default class App extends Component {
     })
   }
 
-  async UNSAFE_componentWillMount() {
+  async componentWillMount() {
     const token = await getStorage('token');
     global.token = token;
     this.setState({

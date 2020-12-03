@@ -29,7 +29,7 @@ export default (isLogin) => {
         },
 
         {
-            initialRouteName: isLogin ? 'Main' : 'Login',
+            initialRouteName: !isLogin ? 'Main' : 'Login',
             defaultNavigationOptions: {
                 headerTintColor: theme.tintColor,
                 headerTitleStyle: {

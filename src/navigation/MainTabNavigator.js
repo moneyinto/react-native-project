@@ -4,11 +4,14 @@ import TabBarIcon from "../components/TabBarIcon";
 import theme from "../theme";
 import Home from "../pages/home";
 import Me from "../pages/me";
+import Cart from "../pages/cart";
 
-const HomeNorIcon = require('./images/tab_icon_home_nor.png');
-const HomeSelIcon = require('./images/tab_icon_home_sel.png');
-const MyNorIcon = require('./images/tab_icon_my_nor.png');
-const MySelIcon = require('./images/tab_icon_my_sel.png');
+const HomeIcon = require('./images/home.png');
+const HomeSelIcon = require('./images/home_selected.png');
+const CartIcon = require('./images/cart.png');
+const CartSelIcon = require('./images/cart_selected.png');
+const MyIcon = require('./images/me.png');
+const MySelIcon = require('./images/me_selected.png');
 
 export default createBottomTabNavigator(
     {
@@ -20,8 +23,22 @@ export default createBottomTabNavigator(
                 tabBarIcon: ({ focused }) => (
                     <TabBarIcon
                         focused={focused}
-                        image={HomeNorIcon}
+                        image={HomeIcon}
                         selectImage={HomeSelIcon}
+                    />
+                )
+            })
+        },
+        Cart: {
+            screen: Cart,
+            path: 'Cart',
+            navigationOptions: ({ navigation }) => ({
+                tabBarLabel: '购物车',
+                tabBarIcon: ({ focused }) => (
+                    <TabBarIcon
+                        focused={focused}
+                        image={CartIcon}
+                        selectImage={CartSelIcon}
                     />
                 )
             })
@@ -34,7 +51,7 @@ export default createBottomTabNavigator(
                 tabBarIcon: ({ focused }) => (
                     <TabBarIcon
                         focused={focused}
-                        image={MyNorIcon}
+                        image={MyIcon}
                         selectImage={MySelIcon}
                     />
                 )
