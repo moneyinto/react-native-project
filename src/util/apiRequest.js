@@ -1,9 +1,9 @@
 import request from "./request";
 import ToastContainer from "./toast";
 
-const baseUrl = '';
+const baseUrl = 'https://testweb.front.eweb.cn/';
 
-export default async function ApiRequest(url, options, withToken = true) {
+export default async function ApiRequest(url, options, withToken = true, isShowLoading = false) {
     const headers = {
         'Content-Type': 'application/json',
         ...options.headers,
@@ -18,11 +18,11 @@ export default async function ApiRequest(url, options, withToken = true) {
         requestOptions.headers.Authorization = global.token;
     }
 
-    global.loading.show();
+    isShowLoading && global.loading.show();
 
     return request(baseUrl + url, requestOptions).then((result) => {
         
-        global.loading.hide();
+        isShowLoading && global.loading.hide();
 
         const { data, success } = result;
         let realSuccess = false;
