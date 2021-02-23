@@ -3,7 +3,7 @@ import { View, StyleSheet, Dimensions, Text, Image, ScrollView, TouchableOpacity
 const screenWidth = Dimensions.get('window').width;
 const boxWidth = (screenWidth - 50) / 2;
 const blockIcon = require('./images/block.png');
-import { themeColor } from '../../theme';
+import theme from '../../theme';
 
 export default class ProductList extends Component {
     state = {
@@ -37,6 +37,10 @@ export default class ProductList extends Component {
         categoryId: 1
     }
 
+    constructor(props) {
+        super(props);
+    }
+
     categorySelect = (id) => {
         this.setState({
             categoryId: id
@@ -47,7 +51,14 @@ export default class ProductList extends Component {
         const { productList, categoryList, categoryId } = this.state;
 
         const renderItem = ({ item, index }) => (
-            <View style={{...styles.productItem, ...(index % 2 == 1 ? {marginLeft: 10} : {})}}>
+            <TouchableOpacity style={{ ...styles.productItem, ...(index % 2 == 1 ? { marginLeft: 10 } : {}) }} onPress={() => {
+                this.props.navigation.navigate({
+                    routeName: 'Detail',
+                    params: {
+                        id: "xxx"
+                    },
+                });
+            }}>
                 <Image style={styles.productImage} source={require('./images/product_1.png')} />
                 <View style={styles.productTitle}>
                     <Text numberOfLines={2} ellipsizeMode={'tail'} style={styles.productTitleText}>大自然的味道炫酷的设计风格无语伦比超低</Text>
@@ -59,7 +70,7 @@ export default class ProductList extends Component {
                 <View style={styles.buyBox}>
                     <Text style={styles.buyText}>99人付款</Text>
                 </View>
-            </View>
+            </TouchableOpacity>
         );
 
         return (
@@ -68,9 +79,9 @@ export default class ProductList extends Component {
                     <ScrollView horizontal={true} style={styles.categoryBox}>
                         {
                             categoryList.map(item => {
-                                return  <TouchableOpacity style={styles.categoryItem} onPress={() => this.categorySelect(item.id)}>
-                                            <Text style={{...styles.categoryTitle, ...(categoryId == item.id ? styles.categoryTitleActive : {})}}>{item.name}</Text>
-                                        </TouchableOpacity>
+                                return <TouchableOpacity style={styles.categoryItem} onPress={() => this.categorySelect(item.id)}>
+                                    <Text style={{ ...styles.categoryTitle, ...(categoryId == item.id ? styles.categoryTitleActive : {}) }}>{item.name}</Text>
+                                </TouchableOpacity>
                             })
                         }
                     </ScrollView>
@@ -81,7 +92,7 @@ export default class ProductList extends Component {
                         data={productList}
                         renderItem={renderItem}
                         numColumns={2}
-                        // getItemLayout={(data, index) => ( {length: 150, offset: 150 * index, index} )}
+                    // getItemLayout={(data, index) => ( {length: 150, offset: 150 * index, index} )}
                     />
                 </View>
             </View>
@@ -118,7 +129,7 @@ const styles = StyleSheet.create({
         fontSize: 18
     },
     categoryTitleActive: {
-        color: themeColor
+        color: theme.themeColor
     },
     productBox: {
         marginTop: 8
@@ -151,7 +162,7 @@ const styles = StyleSheet.create({
     },
     productPriceText: {
         fontSize: 14,
-        color: themeColor
+        color: theme.themeColor
     },
     originProductPriceText: {
         textDecorationLine: 'line-through',

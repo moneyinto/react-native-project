@@ -68,7 +68,7 @@ export default class Home extends Component {
                 </View>
 
                 <View style={styles.productList}>
-                    <ProductList />
+                    <ProductList {...this.props} />
                 </View>
             </ScrollView>
         )

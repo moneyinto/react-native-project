@@ -18,10 +18,6 @@ export default class SecKill extends Component {
         this.startCount();
     }
 
-    componentWillReceiveProps() {
-
-    }
-
     startCount = () => {
         clearInterval(timer);
         timer = setInterval(() => {

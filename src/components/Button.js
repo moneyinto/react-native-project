@@ -7,11 +7,12 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         borderColor: '#eeeeee',
         padding: 10,
-        fontSize: 16,
         justifyContent: 'center',
         alignItems: 'center'
     },
-    text: {},
+    text: {
+        fontSize: 16
+    },
 });
 
 class Button extends Component {
@@ -20,7 +21,7 @@ class Button extends Component {
         if (typeof onPress === 'function') { onPress(); }
     }
     render() {
-        const { children, textStyle, underlayColor, borderColor, borderWidth, color, size, width, height, ...other } = this.props;
+        const { children, textStyle, underlayColor, borderColor, borderWidth, backgroundColor, color, size, width, height, ...other } = this.props;
         return (
             <TouchableHighlight
                 underlayColor={underlayColor || '#efefef'}
@@ -30,6 +31,7 @@ class Button extends Component {
                     ...borderWidth ? { borderWidth } : {},
                     ...width ? { width } : {},
                     ...height ? { height } : {},
+                    ...backgroundColor ? { backgroundColor } : {},
                 }}
                 {...other}
                 onPress={this.onPress}

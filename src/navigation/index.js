@@ -2,9 +2,11 @@ import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { View } from 'react-native';
 import Login from "../pages/login";
+import Detail from "../pages/detail";
 import theme from '../theme';
 import MainTabNavigator from './MainTabNavigator';
 import { createStackNavigator } from 'react-navigation-stack';
+import MyOrder from '../pages/myOrder';
 
 const defaultBigTitleHeaderStyle = {
     backgroundColor: 'transparent',
@@ -25,19 +27,39 @@ export default (isLogin) => {
             },
             Login: {
                 screen: Login
+            },
+            Detail: {
+                screen: Detail,
+                navigationOptions: () => ({
+                    headerTitleStyle: {
+                        alignSelf: 'center',
+                        justifyContent: 'center'
+                    }
+                })
+            },
+            MyOrder: {
+                screen: MyOrder,
+                navigationOptions: () => ({
+                    headerTitleStyle: {
+                        alignSelf: 'center',
+                        justifyContent: 'center'
+                    }
+                })
             }
         },
 
         {
             initialRouteName: !isLogin ? 'Main' : 'Login',
             defaultNavigationOptions: {
+                headerBackTitle: null,
+                headerTruncatedBackTitle: null,
                 headerTintColor: theme.tintColor,
                 headerTitleStyle: {
-                  flex: 1,
-                  textAlign: 'center',
-                  color: '#000'
+                    flex: 1,
+                    color: '#000',
+                    alignSelf: 'center',
+                    justifyContent: 'center'
                 },
-                headerBackTitle: null,
                 headerRight: () => <View />
             },
             // mode: "card", // 页面切换模式, 左右是card(相当于iOS中的push效果), 上下是modal(相当于iOS中的modal效果)
