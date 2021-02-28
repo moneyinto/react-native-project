@@ -7,6 +7,7 @@ import theme from '../theme';
 import MainTabNavigator from './MainTabNavigator';
 import { createStackNavigator } from 'react-navigation-stack';
 import MyOrder from '../pages/myOrder';
+import OrderDetail from '../pages/orderDetail';
 
 const defaultBigTitleHeaderStyle = {
     backgroundColor: 'transparent',
@@ -39,6 +40,15 @@ export default (isLogin) => {
             },
             MyOrder: {
                 screen: MyOrder,
+                navigationOptions: () => ({
+                    headerTitleStyle: {
+                        alignSelf: 'center',
+                        justifyContent: 'center'
+                    }
+                })
+            },
+            OrderDetail: {
+                screen: OrderDetail,
                 navigationOptions: () => ({
                     headerTitleStyle: {
                         alignSelf: 'center',

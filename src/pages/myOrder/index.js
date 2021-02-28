@@ -35,6 +35,17 @@ export default class MyOrder extends Component {
         })
     }
 
+    goOrderDetail = () => {
+        const { type } = this.state;
+        this.props.navigation.navigate({
+            routeName: 'OrderDetail',
+            params: {
+                id: "xxx",
+                type
+            }
+        })
+    }
+
     render() {
         const { type, orderList } = this.state;
         return (
@@ -60,7 +71,7 @@ export default class MyOrder extends Component {
                 <ScrollView style={styles.orderList}>
                     {
                         orderList.map((item, i) => {
-                            return <View style={styles.orderItem} key={i}>
+                            return <TouchableOpacity style={styles.orderItem} key={i} onPress={() => this.goOrderDetail()}>
                                 <View style={styles.orderHeader}>
                                     <Text style={styles.orderNo}>23232143</Text>
                                     <Text style={styles.orderStatusText}>{['待支付', '待发货', '待收货', '待评价'][type]}</Text>
@@ -88,7 +99,7 @@ export default class MyOrder extends Component {
                                     { type == 2 && <Button color="#888888" style={styles.refund}>查看物流</Button>}
                                     { type == 2 && <Button color="#ffffff" style={styles.pay}>确认收货</Button>}
                                 </View>
-                            </View>
+                            </TouchableOpacity>
                         })
                     }
                 </ScrollView>
