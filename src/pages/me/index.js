@@ -13,6 +13,12 @@ export default class Me extends Component {
         });
     }
 
+    goDiscount = () => {
+        this.props.navigation.navigate({
+            routeName: 'Discount'
+        });
+    }
+
     render() {
         return (
             <ScrollView style={styles.container}>
@@ -35,10 +41,10 @@ export default class Me extends Component {
                 </ImageBackground>
 
                 <View style={styles.meBox}>
-                    <View style={styles.meBlock}>
+                    <TouchableOpacity style={styles.meBlock} onPress={() => this.goDiscount()}>
                         <Image style={{width: 32, height: 24, marginBottom: 9, marginTop: 3}} source={require('./images/discount_icon.png')}></Image>
                         <Text style={styles.meBlockText}>优惠券</Text>
-                    </View>
+                    </TouchableOpacity>
                     <View style={styles.meBlock}>
                         <Image style={{width: 25, height: 30, marginBottom: 6}} source={require('./images/address_icon.png')}></Image>
                         <Text style={styles.meBlockText}>收货地址</Text>
